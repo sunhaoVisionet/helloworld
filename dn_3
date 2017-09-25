@@ -1,0 +1,54 @@
+char ch1[10]={'c','h','i','n','a'};
+// \0代表空格
+char ch1[]={'c','h','i','n','a','\0'};
+ch1是常量，不能被改变，存的是地址，但是可以改变地址上的值
+char ch1[20]="china";
+ch1[0]='s';
+printf("%s \n",ch1);//打印字符串
+printf("%#x ,",&ch1);//打印地址
+
+
+// 数组指针也是常量，ch是个指针
+// 1.系统会给"china"常量分配一个常量区，
+// 2.char * ch 没有初始化
+// 3.将常量区A的首地址复制给ch
+char * ch="china";
+// 不能修改，ch没有分配空间，指向的是常量区，"china"的首地址存入ch
+// 
+ch[2]='b';
+
+//
+char * ch = (char *)malloc(100 * sizeof(char));
+// 将"china"常量中的值复制给ch，而不是地址
+strcpy(ch,"china");
+ch[2] = 'b';
+
+
+char * ch = (char *)malloc(100 * sizeof(char));
+free(ch);//没有这句就会内存泄露，因为ch指向了另外了一个地址
+ch = "china";
+
+char d[25];
+char * b = "s",*c = "C++";
+strcpy(d,b);
+// 将两个字符串拼接
+strcat(d,c);
+printf("%s\n",d);//sC++
+
+// c1已经申请了地址，不是常量，把常量"abcd"的值复制给c1
+char c1[] = "abcd";
+
+char * c2 = "(char *)malloc(sizeof(char) * 20);
+strcpy(c1,"abcd");
+
+//c3的地址是常量,char类型的指针是一个常量
+char * c3 = "abcd";
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,154 @@
+
+21:40----00:06:31
+
+//强调：类型!=变量，结构体名代表的只是结构体类型，没有内存空间
+//结构体中的变量可以单独使用
+
+/////////////////结构体定义和初始化////////////////
+
+struct//结构体
+//类似java的javabean,一系列不同类型的数据的结合
+//系统不会给struct分配内存空间
+struct Student{
+  char name[20];
+  int age;
+  char gender[10];
+  int classId;
+
+
+}Lucy = {"lucy",20}；//全局变量,第三种初始化方式
+//匿名结构体的全局变量
+//只有一个；锁定匿名结构的的数量
+struct {
+  int classId;
+}stu3,stu4,stu5;//stu3 4 5已经分配了内存；
+
+int main(){
+
+  //局部变量是系统给分配在栈里
+  //初始化，第一种方式
+  struct Student stu1 = { "lucy", 20};
+  //第二种
+  struct Student stu2;
+  //错误的，name是数组
+  stu2.name = "lucy";
+  //对的
+  strcpy(stu2.name, "lucy");
+  stu2.age = 20;
+ printf("%s, %d \n", stu1.name, stu1.age);
+   return 0;
+}
+
+
+/////////////////////////////结构体数组/////////////////////////////
+
+
+
+int main(){
+
+//可以这么定义，不一定要struct，str是数组的首地址
+Stuent str[3];
+//或者,c语言支持下方的定义根据类型进行匹配；但是c语言建议每个用大括号
+Student str[3] = {"lucy", 30, "leilei", 32, {"meimei", 35}};
+//这样的没有分配内存
+struct Student s[5];
+for(i = 0; i < 5; i++){
+  s[i].age = 20 + i;
+  strcpy(s[i].name, "lucy");
+
+  printf("s : %d %d %s " ,i, s[i].age, s[i].name);
+}
+
+
+Student *s7;
+s7 = (Student *)malloc(sizeof(struct Student)* 4);
+//系统给s7分配内存连续的，
+memset(s7, 0, sizeof(struct Student) * 4);
+
+for(i = 0; i < 4; i++){
+//结构体的指针,s7是首地址，内存地址是连续的，所以先+1偏移
+ (s7 + i)->age = 20 + i;
+ (s7 + i)->name = "lucy";
+
+
+}
+  return 0;
+}
+
+
+////////////////////结构体内函数指针///////////////////
+
+struct Man{
+  int age;
+  char *name;
+//结构体中添加函数指针
+  int(*Msg)(char*, int);
+//结构体中添加结构体指针成员变量
+
+
+}
+
+int message(char * str, int age){
+  MessageBox(0,TEXT("hello"), TEXT(Lijian"), 0);
+
+  return 0;
+}
+
+int main(){
+
+ struct Man man;
+ man.age=40;
+ man.name = "李建";
+//调用了函数message
+ man.Msg=message;
+
+
+  return 0;
+}
+
+
+
+
+
+
+////////////////结构体中添加结构体指针成员变量///////////
+struct Node{
+//单链表
+  int data;
+  Node * next;
+
+};
+/////java中
+ArrayList<NOde> list;
+Node node;
+list.add(node);
+
+//在单链表的末尾添加一个数据
+int enqueNode(Node *head, int data){
+
+ Node * node = (Node *)malloc(sizeof(Node));
+ node->data = data;
+ node->data = NULL;
+
+ Node *p = head;
+ while(p->next != NULL){
+  p++;
+ }
+
+  return ;
+}
+
+int main(){
+
+ Node * list;
+ list = (NOde *)malloc(sizeof(struct Node));
+ list->data = 0;
+ list->data = null;
+
+  return 0;
+}
+
+
+
+
+

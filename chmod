@@ -1,0 +1,45 @@
+
+
+使用方式：chmod [-cfvR] [--help] [--version] mode file
+
+1.参数：
+    mode:权限设定字串，格式：[ugoa][+-=][rwxX]
+    u:文件所有者，g:和所有者属同一group，o:其他以外的人
+    +:增加权限;-:取消权限;=:表示唯一设定权限
+    r:可读取;w:可写;x:可执行;X:该目录是子目录或已经设定为可执行
+
+    -c:该档案权限确实已经更改，才显示其更改动作
+    -f:该档案权限无法更改，也不显示错误信息
+    -v:显示权限变更的详细资料
+    -R:对当前目录下的所有档案和子目录进行权限变更
+
+
+2.示例：
+  //将a.txt 设为所有人可读
+  chmod ugo+r a.txt
+  chmod a+r a.txt
+
+  //拥有者和他的群组可写，其他不可写
+  chmod ug+w,o-w,a.txt
+
+  //设定为只有所有者可执行
+  chmod u+x a.txt
+
+3.rwx
+  r = 4;
+  w = 2;
+  x = 1;
+
+  //以下几个相同
+  chmod a=rwx file
+  chmod 777 file
+
+  //以下几个相同
+  chmod ug=rwx,o=x file
+  chmod 771 file
+  
+
+
+
+
+
